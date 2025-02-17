@@ -73,7 +73,33 @@ To utilize external data in RAG responses, you first need to upload the files. T
       response = requests.post(url, headers=headers, files=files)
       return response.json()
   ```
+#### Creating Knowledge Collection
+- **Endpoint**: `POST /api/v1/knowledge/create`
+- **Curl Example**:
 
+  ```bash
+  curl -X POST http://localhost:3000/api/v1/knowledge/create \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name":"NameOfYourKnowledgeCollection",
+    "description":"Description of your Knowledge Collection" }'
+  ```
+- **Python Example**:
+
+  ```python
+  import requests
+
+  def crete_knowledge(token,nameKnowledge,descKnowledge):
+      url = f'http://localhost:3000/api/v1/knowledge/create'
+      headers = {
+          'Authorization': f'Bearer {token}',
+          'Content-Type': 'application/json'
+      }
+      data = {'name': nameKnowledge,'description': descKnowledge}
+      response = requests.post(url, headers=headers, json=data)
+      return response.json()
+  ```
 #### Adding Files to Knowledge Collections
 
 After uploading, you can group files into a knowledge collection or reference them individually in chats.
